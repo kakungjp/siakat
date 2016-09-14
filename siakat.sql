@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2016 at 09:35 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- Generation Time: 14 Sep 2016 pada 14.38
+-- Versi Server: 5.6.24
+-- PHP Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `siakat`
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bobotnilai`
+-- Struktur dari tabel `bobotnilai`
 --
 
-CREATE TABLE `bobotnilai` (
+CREATE TABLE IF NOT EXISTS `bobotnilai` (
   `bn_nilai` char(1) NOT NULL,
   `bn_bobot` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -34,17 +34,17 @@ CREATE TABLE `bobotnilai` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dosen`
+-- Struktur dari tabel `dosen`
 --
 
-CREATE TABLE `dosen` (
+CREATE TABLE IF NOT EXISTS `dosen` (
   `dsn_nidn` int(11) NOT NULL,
   `dsn_nama` varchar(50) NOT NULL,
   `dsn_password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `dosen`
+-- Dumping data untuk tabel `dosen`
 --
 
 INSERT INTO `dosen` (`dsn_nidn`, `dsn_nama`, `dsn_password`) VALUES
@@ -60,16 +60,16 @@ INSERT INTO `dosen` (`dsn_nidn`, `dsn_nama`, `dsn_password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fakultas`
+-- Struktur dari tabel `fakultas`
 --
 
-CREATE TABLE `fakultas` (
+CREATE TABLE IF NOT EXISTS `fakultas` (
   `fk_kode` int(11) NOT NULL,
   `fk_nama` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `fakultas`
+-- Dumping data untuk tabel `fakultas`
 --
 
 INSERT INTO `fakultas` (`fk_kode`, `fk_nama`) VALUES
@@ -84,16 +84,16 @@ INSERT INTO `fakultas` (`fk_kode`, `fk_nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hari`
+-- Struktur dari tabel `hari`
 --
 
-CREATE TABLE `hari` (
+CREATE TABLE IF NOT EXISTS `hari` (
   `hr_kode` int(11) NOT NULL,
   `hr_nama` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `hari`
+-- Dumping data untuk tabel `hari`
 --
 
 INSERT INTO `hari` (`hr_kode`, `hr_nama`) VALUES
@@ -106,32 +106,43 @@ INSERT INTO `hari` (`hr_kode`, `hr_nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jadwal`
+-- Struktur dari tabel `jadwal`
 --
 
-CREATE TABLE `jadwal` (
+CREATE TABLE IF NOT EXISTS `jadwal` (
   `jdw_kode` int(11) NOT NULL,
   `jdw_semester` int(11) NOT NULL,
   `jdw_matkul` int(11) NOT NULL,
   `jdw_dosen` int(11) NOT NULL,
   `jdw_hari` int(11) NOT NULL,
   `jdw_jam` int(11) NOT NULL,
-  `jwd_peserta` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `jdw_peserta` int(2) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `jadwal`
+--
+
+INSERT INTO `jadwal` (`jdw_kode`, `jdw_semester`, `jdw_matkul`, `jdw_dosen`, `jdw_hari`, `jdw_jam`, `jdw_peserta`) VALUES
+(1, 1, 1, 1, 1, 1, 20),
+(2, 1, 1, 2, 1, 2, 20),
+(3, 1, 3, 5, 3, 3, 20),
+(4, 1, 4, 2, 2, 2, 20),
+(5, 1, 2, 6, 1, 4, 25);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jam`
+-- Struktur dari tabel `jam`
 --
 
-CREATE TABLE `jam` (
+CREATE TABLE IF NOT EXISTS `jam` (
   `jam_kode` int(11) NOT NULL,
   `jam_keterangan` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jam`
+-- Dumping data untuk tabel `jam`
 --
 
 INSERT INTO `jam` (`jam_kode`, `jam_keterangan`) VALUES
@@ -144,16 +155,16 @@ INSERT INTO `jam` (`jam_kode`, `jam_keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenismatkul`
+-- Struktur dari tabel `jenismatkul`
 --
 
-CREATE TABLE `jenismatkul` (
+CREATE TABLE IF NOT EXISTS `jenismatkul` (
   `jns_kode` int(11) NOT NULL,
   `jns_keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenismatkul`
+-- Dumping data untuk tabel `jenismatkul`
 --
 
 INSERT INTO `jenismatkul` (`jns_kode`, `jns_keterangan`) VALUES
@@ -164,10 +175,10 @@ INSERT INTO `jenismatkul` (`jns_kode`, `jns_keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mahasiswa`
+-- Struktur dari tabel `mahasiswa`
 --
 
-CREATE TABLE `mahasiswa` (
+CREATE TABLE IF NOT EXISTS `mahasiswa` (
   `mhs_noreg` int(11) NOT NULL,
   `mhs_nama` varchar(50) NOT NULL,
   `mhs_password` varchar(100) NOT NULL,
@@ -177,10 +188,10 @@ CREATE TABLE `mahasiswa` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `matkul`
+-- Struktur dari tabel `matkul`
 --
 
-CREATE TABLE `matkul` (
+CREATE TABLE IF NOT EXISTS `matkul` (
   `mtk_kode` int(11) NOT NULL,
   `mtk_nama` varchar(100) NOT NULL,
   `mtk_dosen` int(11) NOT NULL,
@@ -188,30 +199,30 @@ CREATE TABLE `matkul` (
   `mtk_fakultas` int(11) NOT NULL,
   `mtk_prodi` int(11) NOT NULL,
   `mtk_sks` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `matkul`
+-- Dumping data untuk tabel `matkul`
 --
 
 INSERT INTO `matkul` (`mtk_kode`, `mtk_nama`, `mtk_dosen`, `mtk_jenis`, `mtk_fakultas`, `mtk_prodi`, `mtk_sks`) VALUES
-(1, 'Struktur Data', 5, 1, 0, 0, 0),
-(2, 'Metode Numerik 	', 0, 1, 0, 0, 0),
-(3, 'Jaringan Komputer ', 0, 1, 0, 0, 0),
-(4, 'Desain Web', 0, 1, 0, 0, 0),
-(5, 'Perencanaan Pembelajaran', 0, 1, 0, 0, 0),
-(6, 'Industri Kecil dan Menengah TIK	', 0, 1, 0, 0, 0),
-(7, 'Bahasa Inggris ', 0, 1, 0, 0, 0),
-(8, 'Pemrograman Web ', 0, 1, 0, 0, 0),
-(9, 'E-Learning', 0, 1, 0, 0, 0);
+(1, 'Struktur Data', 5, 1, 0, 0, 3),
+(2, 'Metode Numerik 	', 0, 1, 0, 0, 2),
+(3, 'Jaringan Komputer ', 0, 1, 0, 0, 3),
+(4, 'Desain Web', 0, 1, 0, 0, 2),
+(5, 'Perencanaan Pembelajaran', 0, 1, 0, 0, 2),
+(6, 'Industri Kecil dan Menengah TIK	', 0, 1, 0, 0, 2),
+(7, 'Bahasa Inggris ', 0, 1, 0, 0, 2),
+(8, 'Pemrograman Web ', 0, 1, 0, 0, 3),
+(9, 'E-Learning', 0, 1, 0, 0, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nilai`
+-- Struktur dari tabel `nilai`
 --
 
-CREATE TABLE `nilai` (
+CREATE TABLE IF NOT EXISTS `nilai` (
   `nl_mahasiswa` int(11) NOT NULL,
   `nl_jadwal` int(11) NOT NULL,
   `nl_nilai` char(1) NOT NULL
@@ -220,17 +231,17 @@ CREATE TABLE `nilai` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prodi`
+-- Struktur dari tabel `prodi`
 --
 
-CREATE TABLE `prodi` (
+CREATE TABLE IF NOT EXISTS `prodi` (
   `prd_kode` int(11) NOT NULL,
   `prd_nama` varchar(100) NOT NULL,
   `prd_fakultas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `prodi`
+-- Dumping data untuk tabel `prodi`
 --
 
 INSERT INTO `prodi` (`prd_kode`, `prd_nama`, `prd_fakultas`) VALUES
@@ -240,12 +251,24 @@ INSERT INTO `prodi` (`prd_kode`, `prd_nama`, `prd_fakultas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `semester`
+-- Struktur dari tabel `semester`
 --
 
-CREATE TABLE `semester` (
+CREATE TABLE IF NOT EXISTS `semester` (
   `semester` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `semester`
+--
+
+INSERT INTO `semester` (`semester`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6);
 
 --
 -- Indexes for dumped tables
@@ -279,12 +302,7 @@ ALTER TABLE `hari`
 -- Indexes for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  ADD PRIMARY KEY (`jdw_kode`),
-  ADD KEY `jdw_semester` (`jdw_semester`,`jdw_matkul`,`jdw_dosen`),
-  ADD KEY `jdw_matkul` (`jdw_matkul`),
-  ADD KEY `jdw_dosen` (`jdw_dosen`),
-  ADD KEY `jdw_hari` (`jdw_hari`,`jdw_jam`),
-  ADD KEY `jdw_jam` (`jdw_jam`);
+  ADD PRIMARY KEY (`jdw_kode`), ADD KEY `jdw_semester` (`jdw_semester`,`jdw_matkul`,`jdw_dosen`), ADD KEY `jdw_matkul` (`jdw_matkul`), ADD KEY `jdw_dosen` (`jdw_dosen`), ADD KEY `jdw_hari` (`jdw_hari`,`jdw_jam`), ADD KEY `jdw_jam` (`jdw_jam`), ADD KEY `jdw_semester_2` (`jdw_semester`);
 
 --
 -- Indexes for table `jam`
@@ -302,16 +320,13 @@ ALTER TABLE `jenismatkul`
 -- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  ADD PRIMARY KEY (`mhs_noreg`),
-  ADD KEY `mhs_prodi` (`mhs_prodi`);
+  ADD PRIMARY KEY (`mhs_noreg`), ADD KEY `mhs_prodi` (`mhs_prodi`);
 
 --
 -- Indexes for table `matkul`
 --
 ALTER TABLE `matkul`
-  ADD PRIMARY KEY (`mtk_kode`),
-  ADD KEY `mtk_dosen` (`mtk_dosen`),
-  ADD KEY `mtk_jenis` (`mtk_jenis`);
+  ADD PRIMARY KEY (`mtk_kode`), ADD KEY `mtk_dosen` (`mtk_dosen`), ADD KEY `mtk_jenis` (`mtk_jenis`);
 
 --
 -- Indexes for table `nilai`
@@ -323,8 +338,7 @@ ALTER TABLE `nilai`
 -- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
-  ADD PRIMARY KEY (`prd_kode`),
-  ADD KEY `prd_fakultas` (`prd_fakultas`);
+  ADD PRIMARY KEY (`prd_kode`), ADD KEY `prd_fakultas` (`prd_fakultas`);
 
 --
 -- Indexes for table `semester`
@@ -340,32 +354,32 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `dsn_nidn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `dsn_nidn` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `fakultas`
 --
 ALTER TABLE `fakultas`
-  MODIFY `fk_kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `fk_kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `hari`
 --
 ALTER TABLE `hari`
-  MODIFY `hr_kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `hr_kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `jdw_kode` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `jdw_kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `jam`
 --
 ALTER TABLE `jam`
-  MODIFY `jam_kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `jam_kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `jenismatkul`
 --
 ALTER TABLE `jenismatkul`
-  MODIFY `jns_kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `jns_kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `mahasiswa`
 --
@@ -375,55 +389,55 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT for table `matkul`
 --
 ALTER TABLE `matkul`
-  MODIFY `mtk_kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `mtk_kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `prodi`
 --
 ALTER TABLE `prodi`
-  MODIFY `prd_kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `prd_kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `semester`
 --
 ALTER TABLE `semester`
-  MODIFY `semester` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `semester` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `jadwal`
+-- Ketidakleluasaan untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
-  ADD CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`jdw_semester`) REFERENCES `semester` (`semester`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `jadwal_ibfk_2` FOREIGN KEY (`jdw_matkul`) REFERENCES `matkul` (`mtk_kode`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `jadwal_ibfk_3` FOREIGN KEY (`jdw_dosen`) REFERENCES `dosen` (`dsn_nidn`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `jadwal_ibfk_4` FOREIGN KEY (`jdw_hari`) REFERENCES `hari` (`hr_kode`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `jadwal_ibfk_5` FOREIGN KEY (`jdw_jam`) REFERENCES `jam` (`jam_kode`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`jdw_semester`) REFERENCES `semester` (`semester`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `jadwal_ibfk_2` FOREIGN KEY (`jdw_matkul`) REFERENCES `matkul` (`mtk_kode`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `jadwal_ibfk_3` FOREIGN KEY (`jdw_dosen`) REFERENCES `dosen` (`dsn_nidn`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `jadwal_ibfk_4` FOREIGN KEY (`jdw_hari`) REFERENCES `hari` (`hr_kode`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `jadwal_ibfk_5` FOREIGN KEY (`jdw_jam`) REFERENCES `jam` (`jam_kode`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `mahasiswa`
+-- Ketidakleluasaan untuk tabel `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  ADD CONSTRAINT `mahasiswa_ibfk_1` FOREIGN KEY (`mhs_prodi`) REFERENCES `prodi` (`prd_kode`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `mahasiswa_ibfk_1` FOREIGN KEY (`mhs_prodi`) REFERENCES `prodi` (`prd_kode`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `matkul`
+-- Ketidakleluasaan untuk tabel `matkul`
 --
 ALTER TABLE `matkul`
-  ADD CONSTRAINT `matkul_ibfk_1` FOREIGN KEY (`mtk_dosen`) REFERENCES `dosen` (`dsn_nidn`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `matkul_ibfk_2` FOREIGN KEY (`mtk_jenis`) REFERENCES `jenismatkul` (`jns_kode`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `matkul_ibfk_1` FOREIGN KEY (`mtk_dosen`) REFERENCES `dosen` (`dsn_nidn`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `matkul_ibfk_2` FOREIGN KEY (`mtk_jenis`) REFERENCES `jenismatkul` (`jns_kode`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `nilai`
+-- Ketidakleluasaan untuk tabel `nilai`
 --
 ALTER TABLE `nilai`
-  ADD CONSTRAINT `nilai_ibfk_1` FOREIGN KEY (`nl_nilai`) REFERENCES `bobotnilai` (`bn_nilai`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `nilai_ibfk_1` FOREIGN KEY (`nl_nilai`) REFERENCES `bobotnilai` (`bn_nilai`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `prodi`
+-- Ketidakleluasaan untuk tabel `prodi`
 --
 ALTER TABLE `prodi`
-  ADD CONSTRAINT `prodi_ibfk_1` FOREIGN KEY (`prd_fakultas`) REFERENCES `fakultas` (`fk_kode`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `prodi_ibfk_1` FOREIGN KEY (`prd_fakultas`) REFERENCES `fakultas` (`fk_kode`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
