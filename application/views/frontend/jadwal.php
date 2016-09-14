@@ -1,55 +1,55 @@
                     <div class="content">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <h5>Jadwal Kuliah</h5>
-                                <div class="alert alert-info">
-                                    <span>This is a plain notification</span>
-                                </div>
-                                <div class="alert alert-info">
-                                    <button type="button" aria-hidden="true" class="close">×</button>
-                                    <span>This is a notification with close button.</span>
-                                </div>
-                                <div class="alert alert-info alert-with-icon" data-notify="container">
-                                    <button type="button" aria-hidden="true" class="close">×</button>
-                                    <span data-notify="icon" class="pe-7s-bell"></span>
-                                    <span data-notify="message">This is a notification with close button and icon.</span>
-                                </div>
-                                <div class="alert alert-info alert-with-icon" data-notify="container">
-                                    <button type="button" aria-hidden="true" class="close">×</button>
-                                    <span data-notify="icon" class="pe-7s-bell"></span>
-                                    <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3 text-center">
+                                    <h2>Jadwal Kuliah</h2>
+                                    <select class="form-control">
+                                        <option>Semester 1</option>
+                                        <option>Semester 2</option>
+                                        <option>Semester 3</option>
+                                        <option>Semester 4</option>
+                                        <option>Semester 5</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <h5>Notification states</h5>
-                                <div class="alert alert-info">
-                                    <button type="button" aria-hidden="true" class="close">×</button>
-                                    <span><b> Info - </b> This is a regular notification made with ".alert-info"</span>
-                                </div>
-                                <div class="alert alert-success">
-                                    <button type="button" aria-hidden="true" class="close">×</button>
-                                    <span><b> Success - </b> This is a regular notification made with ".alert-success"</span>
-                                </div>
-                                <div class="alert alert-warning">
-                                    <button type="button" aria-hidden="true" class="close">×</button>
-                                    <span><b> Warning - </b> This is a regular notification made with ".alert-warning"</span>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <button type="button" aria-hidden="true" class="close">×</button>
-                                    <span><b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
+                            </br>
+                            <div class="row">
+                                <div class="card">
+                                    <div class="header">
+                                        <h4 class="title">Semester 1</h4>
+                                        <p class="category">Pendidikan Teknik Informatika dan Komputer</p>
+                                    </div>
+                                    <div class="content table-responsive table-full-width">
+                                        <table class="table table-hover table-striped">
+                                            <thead>
+                                                <th>No</th>
+                                                <th>Kode Seksi</th>
+                                                <th>Mata Kuliah</th>
+                                                <th>Dosen</th>
+                                                <th>SKS</th>
+                                                <th>Peserta</th>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+                                                $i = 1;
+                                                foreach ($hasil as $hasil): ?>
+                                                    <tr>
+                                                        <td><?= $i++; ?></td>
+                                                        <td><?= $hasil['jdw_kode']; ?></td>
+                                                        <td><?= $hasil['mtk_nama']; ?></td>
+                                                        <td><?= $hasil['dsn_nama']; ?></td>
+                                                        <td><?= $hasil['mtk_sks']; ?></td>
+                                                        <td><?= $hasil['jdw_peserta']; ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <br>
                         <div class="places-buttons">
-                            <div class="row">
-                                <div class="col-md-6 col-md-offset-3 text-center">
-                                    <h5>Notifications Places
-                                        <p class="category">Click to view notifications</p>
-                                    </h5>
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col-md-2 col-md-offset-3">
                                     <button class="btn btn-default btn-block" onclick="demo.showNotification('top','left')">Top Left</button>

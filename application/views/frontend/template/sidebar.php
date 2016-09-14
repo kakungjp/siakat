@@ -15,8 +15,8 @@
             </div>
 
             <ul class="nav">
-                <li class="active">
-                    <a href="dashboard.html">
+                <li <?php if($menu == 'dashboard'){echo 'class="active"'; } ?> >
+                    <a href="http://localhost/siakat/">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
@@ -33,8 +33,8 @@
                         <p>KRS/KHS</p>
                     </a>
                 </li>
-                <li>
-                    <a href="typography.html">
+                <li <?php if($menu == 'jadwal'){echo 'class="active"'; } ?>>
+                    <a href="http://localhost/siakat/home/jadwal">
                         <i class="pe-7s-date"></i>
                         <p>Jadwal Kuliah</p>
                     </a>
