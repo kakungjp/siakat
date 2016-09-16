@@ -7,10 +7,12 @@
                                                 <th>Mata Kuliah</th>
                                                 <th>Dosen</th>
                                                 <th>SKS</th>
-                                                <th>Peserta</th>
+                                                <th>Bobot</th>
+                                                <th>Nilai</th>
                                             </thead>
                                             <tbody>
                                                 <?php 
+                                                echo $mahasiswa;
                                                 $i = 1;
                                                 if($hasil != false){
                                                     foreach ($hasil as $hasil): ?>
@@ -20,7 +22,8 @@
                                                             <td><?= $hasil['mtk_nama']; ?></td>
                                                             <td><?= $hasil['dsn_nama']; ?></td>
                                                             <td><?= $hasil['mtk_sks']; ?></td>
-                                                            <td><?= $hasil['jdw_peserta']; ?></td>
+                                                            <td>bobot</td>
+                                                            <td><?php if($hasil['nl_nilai']==null){echo 'nilai';} ?></td>
                                                         </tr>
                                                     <?php endforeach; 
                                                 }else{

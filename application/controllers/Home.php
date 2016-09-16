@@ -39,4 +39,27 @@ class Home extends CI_Controller {
 		$this->load->view('frontend/template/head.php', $data);
 		$this->load->view('frontend/tabeljadwal.php', $data);
 	}
+
+	public function krs()
+	{
+		$data['title'] = 'Kartu Rencana Studi';
+		$data['menu'] = 'krs';
+		$this->session->set_userdata('noreg', '1');
+		$mahasiswa = $this->session->userdata('noreg');
+		$this->load->view('frontend/template/head.php', $data);
+		$this->load->view('frontend/template/sidebar.php');
+		$this->load->view('frontend/template/navbar.php');
+		$this->load->view('frontend/krs.php', $data);
+		$this->load->view('frontend/dashboard_footer.php');
+	}
+
+	public function tabelkrs($semester)
+	{
+		$this->session->set_userdata('noreg', '1');
+		$mahasiswa = $this->session->userdata('noreg');
+		$data['mahasiswa']=$this->session->userdata('noreg');
+		$data['hasil'] = $this->Siakat_model->jadwal($semester,$this->session->userdata('noreg'));
+		$this->load->view('frontend/template/head.php', $data);
+		$this->load->view('frontend/tabelkrs.php', $data);
+	}
 }

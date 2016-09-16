@@ -23,6 +23,27 @@ class Siakat_model extends CI_Model {
         }
 	}
 
+	public function krs($semester,$mahasiswa){
+    	$this->db->select('*');
+        $this->db->from('jadwal'); 
+        $this->db->join('krs', 'krs.krs_jadwal=jadwal.jdw_kode', 'right');
+        $this->db->join('nilai', 'nilai.nl_jadwal=jadwal.jdw_kode', 'left');
+        $this->db->join('matkul', 'matkul.mtk_kode=jadwal.jdw_matkul', 'left');
+        $this->db->join('dosen', 'dosen.dsn_nidn=jadwal.jdw_dosen', 'left');
+        $this->db->where('jadwal.jdw_semester',1);
+        $this->db->where('krs.krs_mahasiswa',1);
+        $this->db->order_by('jadwal.jdw_kode','asc');         
+        $query = $this->db->get(); 
+        if($query->num_rows() != 0)
+        {
+            return $query->result_array();
+        }
+        else
+        {
+            return false;
+        }
+	}
+
 	public function tambahkontak($username){
 	    $this->load->helper('url');
 

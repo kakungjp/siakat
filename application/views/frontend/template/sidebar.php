@@ -27,8 +27,8 @@
                         <p>Daftar Hasil Studi</p>
                     </a>
                 </li>
-                <li>
-                    <a href="table.html">
+                <li <?php if($menu == 'krs'){echo 'class="active"'; } ?>>
+                    <a href="http://localhost/siakat/home/krs">
                         <i class="pe-7s-note2"></i>
                         <p>KRS/KHS</p>
                     </a>
