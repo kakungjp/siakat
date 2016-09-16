@@ -23,6 +23,36 @@ class Siakat_model extends CI_Model {
         }
 	}
 
+	public function dosen($nidn = false){
+		if($nidn != false){
+			$this->db->select('*');
+	        $this->db->from('dosen'); 
+	        $this->db->where('dsn_nidn',$nidn);
+	        $this->db->order_by('dsn_nama','asc');         
+	        $query = $this->db->get(); 
+	        if($query->num_rows() != 0)
+	        {
+	            return $query->result_array();
+	        }
+	        else
+	        {
+	            return false;
+	        }
+		}
+    	$this->db->select('*');
+        $this->db->from('dosen');
+        $this->db->order_by('dsn_nama','asc');      
+        $query = $this->db->get(); 
+        if($query->num_rows() != 0)
+        {
+            return $query->result_array();
+        }
+        else
+        {
+            return false;
+        }
+	}
+
 	public function tambahkontak($username){
 	    $this->load->helper('url');
 

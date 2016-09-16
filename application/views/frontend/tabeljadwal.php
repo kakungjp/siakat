@@ -1,4 +1,4 @@
-                            <div class="card">
+                                <div class="card">
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-hover table-striped">
                                             <thead>

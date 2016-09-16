@@ -45,6 +45,12 @@
                         <p>Data Mahasiswa</p>
                     </a>
                 </li>
+                <li <?php if($menu == 'dosen'){echo 'class="active"'; } ?>>
+                    <a href="<?= base_url('home/dosen'); ?>">
+                        <i class="pe-7s-id"></i>
+                        <p>Dosen & Mata Kuliah</p>
+                    </a>
+                </li>
             </ul>
     	</div>
     </div>
