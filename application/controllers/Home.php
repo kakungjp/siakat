@@ -40,6 +40,7 @@ class Home extends CI_Controller {
 		$this->load->view('frontend/tabeljadwal.php', $data);
 	}
 
+<<<<<<< HEAD
 	public function krs()
 	{
 		$data['title'] = 'Kartu Rencana Studi';
@@ -62,4 +63,18 @@ class Home extends CI_Controller {
 		$this->load->view('frontend/template/head.php', $data);
 		$this->load->view('frontend/tabelkrs.php', $data);
 	}
+=======
+	public function dosen($nidn = false)
+	{
+		$data['title'] = 'Dosen & Mata Kuliah';
+		$data['menu'] = 'dosen';
+		$data['hasil'] = $this->Siakat_model->dosen($nidn);
+		$this->load->view('frontend/template/head.php', $data);
+		$this->load->view('frontend/template/sidebar.php');
+		$this->load->view('frontend/template/navbar.php');
+		$this->load->view('frontend/dosenmatkul.php', $data);
+		$this->load->view('frontend/template/footer.php');
+		$this->load->view('frontend/dashboard_footer.php');
+	}
+>>>>>>> origin/master
 }

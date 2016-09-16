@@ -23,6 +23,7 @@ class Siakat_model extends CI_Model {
         }
 	}
 
+<<<<<<< HEAD
 	public function krs($semester,$mahasiswa){
     	$this->db->select('*');
         $this->db->from('jadwal'); 
@@ -33,6 +34,27 @@ class Siakat_model extends CI_Model {
         $this->db->where('jadwal.jdw_semester',1);
         $this->db->where('krs.krs_mahasiswa',1);
         $this->db->order_by('jadwal.jdw_kode','asc');         
+=======
+	public function dosen($nidn = false){
+		if($nidn != false){
+			$this->db->select('*');
+	        $this->db->from('dosen'); 
+	        $this->db->where('dsn_nidn',$nidn);
+	        $this->db->order_by('dsn_nama','asc');         
+	        $query = $this->db->get(); 
+	        if($query->num_rows() != 0)
+	        {
+	            return $query->result_array();
+	        }
+	        else
+	        {
+	            return false;
+	        }
+		}
+    	$this->db->select('*');
+        $this->db->from('dosen');
+        $this->db->order_by('dsn_nama','asc');      
+>>>>>>> origin/master
         $query = $this->db->get(); 
         if($query->num_rows() != 0)
         {
