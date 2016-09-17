@@ -28,9 +28,14 @@
                                         <div class="form-group">
                                             <select class="form-control input-sm" onchange="showKrs(this.value)">
                                                 <option value="">Pilih Semester</option>
-                                                <option value="1">Semester 1</option>
-                                                <option value="2">Semester 2</option>
-                                                <option value="3">Semester 3</option>
+                                                <?php 
+                                                $i = 1;
+                                                if($hasil != false){
+                                                    foreach ($hasil as $hasil): ?>
+                                                <?= '<option value="'.$hasil["jdw_semester"].'">Semester '.$hasil["jdw_semester"].'</option>'; ?>
+                                                <?php endforeach; 
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </form>

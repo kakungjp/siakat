@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2016 at 10:37 AM
+-- Generation Time: Sep 17, 2016 at 08:04 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -30,6 +30,14 @@ CREATE TABLE `bobotnilai` (
   `bn_nilai` char(1) NOT NULL,
   `bn_bobot` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bobotnilai`
+--
+
+INSERT INTO `bobotnilai` (`bn_nilai`, `bn_bobot`) VALUES
+('A', 4),
+('B', 3);
 
 -- --------------------------------------------------------
 
@@ -126,7 +134,7 @@ CREATE TABLE `jadwal` (
 INSERT INTO `jadwal` (`jdw_kode`, `jdw_semester`, `jdw_matkul`, `jdw_dosen`, `jdw_hari`, `jdw_jam`, `jdw_peserta`) VALUES
 (1, 1, 1, 1, 1, 1, 20),
 (2, 1, 1, 2, 1, 2, 20),
-(3, 1, 3, 5, 3, 3, 20),
+(3, 2, 3, 5, 3, 3, 20),
 (4, 1, 4, 2, 2, 2, 20),
 (5, 1, 2, 6, 1, 4, 25);
 
@@ -171,6 +179,27 @@ INSERT INTO `jenismatkul` (`jns_kode`, `jns_keterangan`) VALUES
 (1, 'Mata Kuliah Universitas'),
 (2, 'Mata Kuliah Fakultas'),
 (3, 'Mata Kuliah Program Studi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `krs`
+--
+
+CREATE TABLE `krs` (
+  `krs_mahasiswa` int(11) NOT NULL,
+  `krs_jadwal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `krs`
+--
+
+INSERT INTO `krs` (`krs_mahasiswa`, `krs_jadwal`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -234,6 +263,13 @@ CREATE TABLE `nilai` (
   `nl_jadwal` int(11) NOT NULL,
   `nl_nilai` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `nilai`
+--
+
+INSERT INTO `nilai` (`nl_mahasiswa`, `nl_jadwal`, `nl_nilai`) VALUES
+(1, 1, 'A');
 
 -- --------------------------------------------------------
 
@@ -330,6 +366,14 @@ ALTER TABLE `jenismatkul`
   ADD PRIMARY KEY (`jns_kode`);
 
 --
+-- Indexes for table `krs`
+--
+ALTER TABLE `krs`
+  ADD PRIMARY KEY (`krs_mahasiswa`,`krs_jadwal`),
+  ADD KEY `krs_mahasiswa` (`krs_mahasiswa`),
+  ADD KEY `krs_jadwal` (`krs_jadwal`);
+
+--
 -- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
@@ -347,7 +391,8 @@ ALTER TABLE `matkul`
 -- Indexes for table `nilai`
 --
 ALTER TABLE `nilai`
-  ADD KEY `nl_nilai` (`nl_nilai`);
+  ADD KEY `nl_nilai` (`nl_nilai`),
+  ADD KEY `nl_jadwal` (`nl_jadwal`);
 
 --
 -- Indexes for table `prodi`
@@ -431,6 +476,13 @@ ALTER TABLE `jadwal`
   ADD CONSTRAINT `jadwal_ibfk_5` FOREIGN KEY (`jdw_jam`) REFERENCES `jam` (`jam_kode`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `krs`
+--
+ALTER TABLE `krs`
+  ADD CONSTRAINT `krs_ibfk_1` FOREIGN KEY (`krs_mahasiswa`) REFERENCES `mahasiswa` (`mhs_noreg`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `krs_ibfk_2` FOREIGN KEY (`krs_jadwal`) REFERENCES `jadwal` (`jdw_kode`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
@@ -446,7 +498,8 @@ ALTER TABLE `matkul`
 -- Constraints for table `nilai`
 --
 ALTER TABLE `nilai`
-  ADD CONSTRAINT `nilai_ibfk_1` FOREIGN KEY (`nl_nilai`) REFERENCES `bobotnilai` (`bn_nilai`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `nilai_ibfk_1` FOREIGN KEY (`nl_nilai`) REFERENCES `bobotnilai` (`bn_nilai`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nilai_ibfk_2` FOREIGN KEY (`nl_jadwal`) REFERENCES `jadwal` (`jdw_kode`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `prodi`

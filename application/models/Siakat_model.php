@@ -23,7 +23,24 @@ class Siakat_model extends CI_Model {
         }
 	}
 
-<<<<<<< HEAD
+	public function semester($mahasiswa){
+    	$this->db->select('jdw_semester');
+    	$this->db->distinct();
+        $this->db->from('jadwal'); 
+        $this->db->join('krs', 'krs.krs_jadwal=jadwal.jdw_kode', 'right');
+        $this->db->where('krs.krs_mahasiswa',$mahasiswa);
+        $this->db->order_by('jadwal.jdw_kode','asc');  
+        $query = $this->db->get(); 
+        if($query->num_rows() != 0)
+        {
+            return $query->result_array();
+        }
+        else
+        {
+            return false;
+        }       
+    }
+
 	public function krs($semester,$mahasiswa){
     	$this->db->select('*');
         $this->db->from('jadwal'); 
@@ -31,10 +48,20 @@ class Siakat_model extends CI_Model {
         $this->db->join('nilai', 'nilai.nl_jadwal=jadwal.jdw_kode', 'left');
         $this->db->join('matkul', 'matkul.mtk_kode=jadwal.jdw_matkul', 'left');
         $this->db->join('dosen', 'dosen.dsn_nidn=jadwal.jdw_dosen', 'left');
-        $this->db->where('jadwal.jdw_semester',1);
-        $this->db->where('krs.krs_mahasiswa',1);
-        $this->db->order_by('jadwal.jdw_kode','asc');         
-=======
+        $this->db->where('jadwal.jdw_semester',$semester);
+        $this->db->where('krs.krs_mahasiswa',$mahasiswa);
+        $this->db->order_by('jadwal.jdw_kode','asc');  
+        $query = $this->db->get(); 
+        if($query->num_rows() != 0)
+        {
+            return $query->result_array();
+        }
+        else
+        {
+            return false;
+        }       
+    }
+
 	public function dosen($nidn = false){
 		if($nidn != false){
 			$this->db->select('*');
@@ -53,8 +80,8 @@ class Siakat_model extends CI_Model {
 		}
     	$this->db->select('*');
         $this->db->from('dosen');
-        $this->db->order_by('dsn_nama','asc');      
->>>>>>> origin/master
+        $this->db->order_by('dsn_nama','asc');   
+
         $query = $this->db->get(); 
         if($query->num_rows() != 0)
         {

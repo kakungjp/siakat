@@ -40,13 +40,13 @@ class Home extends CI_Controller {
 		$this->load->view('frontend/tabeljadwal.php', $data);
 	}
 
-<<<<<<< HEAD
 	public function krs()
 	{
 		$data['title'] = 'Kartu Rencana Studi';
 		$data['menu'] = 'krs';
 		$this->session->set_userdata('noreg', '1');
 		$mahasiswa = $this->session->userdata('noreg');
+		$data['hasil'] = $this->Siakat_model->semester($mahasiswa);
 		$this->load->view('frontend/template/head.php', $data);
 		$this->load->view('frontend/template/sidebar.php');
 		$this->load->view('frontend/template/navbar.php');
@@ -56,14 +56,12 @@ class Home extends CI_Controller {
 
 	public function tabelkrs($semester)
 	{
-		$this->session->set_userdata('noreg', '1');
 		$mahasiswa = $this->session->userdata('noreg');
-		$data['mahasiswa']=$this->session->userdata('noreg');
-		$data['hasil'] = $this->Siakat_model->jadwal($semester,$this->session->userdata('noreg'));
-		$this->load->view('frontend/template/head.php', $data);
+		$data['hasil'] = $this->Siakat_model->krs($semester,$mahasiswa);
+		$this->load->view('frontend/template/head.php');
 		$this->load->view('frontend/tabelkrs.php', $data);
 	}
-=======
+
 	public function dosen($nidn = false)
 	{
 		$data['title'] = 'Dosen & Mata Kuliah';
@@ -76,5 +74,5 @@ class Home extends CI_Controller {
 		$this->load->view('frontend/template/footer.php');
 		$this->load->view('frontend/dashboard_footer.php');
 	}
->>>>>>> origin/master
+	
 }
